@@ -4,6 +4,9 @@ var bodyParser = require("body-parser");
 
 var port = process.env.PORT || 3000
 app.use(express.static("public"));
+// express.static("public") (ABOVE), uses that code to serve images, CSS files, 
+// and JavaScript files in a directory named public
+
 
 app.listen(port, () =>  console.log("Server listening on: http://localhost:" + port));
 
