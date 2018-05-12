@@ -1,0 +1,9 @@
+<li>
+	{{burger_name}}
+	{{#unless devoured}}
+	<button class="change-devoured" data-id="{{id}}" data-devoured="{{devoured}}">
+	Eat Me - I'm tasty!	
+	</button>
+	{{/unless}}
+	<button class="delete-burger" data-id="{{this.id}}">DELETE!</button>
+</li>

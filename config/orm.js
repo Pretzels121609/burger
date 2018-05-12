@@ -58,7 +58,7 @@ orm.selectAll("burger", function(result){
       callback(result); //passes the results to the callback function after getting the results from the query
     });
   },
-  insertOne: function(table, columns, values, callback) {
+  create: function(table, columns, values, callback) {
     var queryString = "INSERT INTO " + table;
 
     queryString += " (";
@@ -78,7 +78,8 @@ orm.selectAll("burger", function(result){
       callback(result);
     });
   },
-  // An example of objColVals would be {name: panther, sleepy: true}
+  // An example of objColVals would be {name: cheeseburger, devoured: true}
+  // takes an object and turns it into part of a query string
   updateOne: function(table, objColVals, condition, callback) {
     var queryString = "UPDATE " + table;
 
