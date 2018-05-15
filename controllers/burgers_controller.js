@@ -17,6 +17,7 @@ router.get("/", function(req, res) {
 });
 
 router.post("/api/burgers", function(req, res) {
+  console.log("req.body", req.body)
   burger.create([
     "burger_name"
   ], [
@@ -26,38 +27,42 @@ router.post("/api/burgers", function(req, res) {
     res.json({ id: result.insertId });
   });
 });
-// // :id is a request parameter
-// router.put("/api/cats/:id", function(req, res) {
-//   // if I send a PUT request to /api/cats/2
-//   // req.params.id will equal 2
-//   var condition = "id = " + req.params.id;
+// :id is a request parameter
+router.put("/api/burger/:id", function(req, res) {
+  // if I send a PUT request to /api/burger/4
+  // req.params.id will equal 4
 
-//   console.log("condition", condition);
+  // condition = "id = 4"
+  var condition = "id = " + req.params.id;
 
-//   cat.update({
-//     sleepy: req.body.sleepy
-//   }, condition, function(result) {
-//     if (result.changedRows == 0) {
-//       // If no rows were changed, then the ID must not exist, so 404
-//       return res.status(404).end();
-//     } else {
-//       res.status(200).end();
-//     }
-//   });
-// });
+  console.log("condition", condition);
 
-// router.delete("/api/cats/:id", function(req, res) {
-//   var condition = "id = " + req.params.id;
+  burger.update({
+    devoured: true
+  }, condition, function(result) {
+    if (result.changedRows == 0) {
+      // If no rows were changed, then the ID must not exist, so 404
+      return res.status(404).end();
+    } else {
+      res.status(200).end();
+    }
+  });
+});
 
-//   cat.delete(condition, function(result) {
-//     if (result.affectedRows == 0) {
-//       // If no rows were changed, then the ID must not exist, so 404
-//       return res.status(404).end();
-//     } else {
-//       res.status(200).end();
-//     }
-//   });
-// });
+router.delete("/api/burger/:id", function(req, res) {
+  // request: DELETE sent to 'api/burger/3'
+  // condition = "id = 3"
+  var condition = "id = " + req.params.id;
+
+  burger.delete(condition, function(result) {
+    if (result.affectedRows == 0) {
+      // If no rows were changed, then the ID must not exist, so 404
+      return res.status(404).end();
+    } else {
+      res.status(200).end();
+    }
+  });
+});
 
 
 // Export routes for server.js to use.

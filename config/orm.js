@@ -70,7 +70,7 @@ orm.selectAll("burger", function(result){
 
     console.log(queryString);
 
-    connection.query(queryString, vals, function(err, result) {
+    connection.query(queryString, values, function(err, result) {
       if (err) {
         throw err;
       }
@@ -80,7 +80,7 @@ orm.selectAll("burger", function(result){
   },
   // An example of objColVals would be {name: cheeseburger, devoured: true}
   // takes an object and turns it into part of a query string
-  updateOne: function(table, objColVals, condition, callback) {
+  update: function(table, objColVals, condition, callback) {
     var queryString = "UPDATE " + table;
 
     queryString += " SET ";
@@ -97,7 +97,7 @@ orm.selectAll("burger", function(result){
       callback(result);
     });
   },
-  deleteOne: function(table, condition, callback) {
+  delete: function(table, condition, callback) {
     var queryString = "DELETE FROM " + table;
     queryString += " WHERE ";
     queryString += condition;

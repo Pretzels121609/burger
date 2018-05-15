@@ -9,6 +9,8 @@ var burger = {
     },
     // The variables cols and values are arrays.
     create: function(cols, values, callback) {
+      console.log("cols", cols);
+      console.log("values", values);
       orm.create("burger", cols, values, function(res) {
         callback(res);
         });
